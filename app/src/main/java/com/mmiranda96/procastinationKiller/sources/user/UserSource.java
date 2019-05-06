@@ -8,4 +8,6 @@ public interface UserSource {
     SignupAsyncTask newSignupAsyncTask(SignupAsyncTask.Listener listener);
 
     UpdateFirebaseTokenAsyncTask newUpdateFirebaseTokenAsyncTask(User user);
+
+    UpdateUserAsyncTask newUpdateUserAsyncTask(UpdateUserAsyncTask.Listener listener, User user);
 }

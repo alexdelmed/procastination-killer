@@ -41,6 +41,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="55dp"
+        android:onClick="onOkButtonClick"
         android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
