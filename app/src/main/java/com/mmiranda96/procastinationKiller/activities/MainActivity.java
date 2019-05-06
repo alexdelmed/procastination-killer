@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,17 +38,18 @@ public class MainActivity extends AppCompatActivity implements GetTasksAsyncTask
     private TaskListAdapter adapter;
     private TaskSource taskSource;
     private UserSource userSource;
+    private Button editProfileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Intent intent = getIntent();
         this.currentUser = (User) intent.getSerializableExtra(IntentExtras.USER);
 
         this.taskList = findViewById(R.id.listViewMainActivityTaskList);
+        this.editProfileButton = findViewById(R.id.buttonMainActivityEditProfile);
 
         ArrayList<Task> tasks = new ArrayList<>();
         this.adapter = new TaskListAdapter(this, this.currentUser, tasks);
@@ -121,5 +123,11 @@ public class MainActivity extends AppCompatActivity implements GetTasksAsyncTask
         Log.d("Firebase", "Token: " + token);
         UpdateFirebaseTokenAsyncTask asyncTask = this.userSource.newUpdateFirebaseTokenAsyncTask(this.currentUser);
         asyncTask.execute(token);
+    }
+
+    public void onEditProfileButtonClick(View view){
+        Intent intent = new Intent(getApplicationContext(), EditUserActivity.class);
+        intent.putExtra(IntentExtras.USER, this.currentUser);
+        startActivity(intent);
     }
 }
